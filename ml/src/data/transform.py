@@ -1,41 +1,50 @@
-# 1. Import dependencies and functions
+
+from ml.src.data.clean import clean_data
 from ml.src.data.extract import extract_tables
 from ml.src.data.inspect import inspect_data
-from ml.src.data.clean import clean_data
 from ml.src.data.validate import validate_data
-from sqlalchemy import create_engine, text
 
-# 2. Define the transformation pipeline
-def transform_tables(tables):
 
-    db_url = "postgresql+psycopg2://liz:password@localhost:5442/fraud_guard_live"
-    engine = create_engine(db_url)
+def transform_tables():
 
-    cleaned_tables = {}
-
+    # 1. Extract
     all_tables = extract_tables()
 
-    # 3. Process each extracted table
+    # 2. Inspect, clean, and prepare cleaned tables
+    cleaned_tables = {}
+
     for table_name, df in all_tables.items():
 
-        # Inspect the original DataFrame
+        print(f"\nProcessing table: {table_name}")
 
-        # Clean the DataFrame
+        inspect_data(table_name, df)
 
-        # Validate the cleaned DataFrame
+        cleaned_df = clean_data(table_name, df)
 
-        # Store the cleaned DataFrame
-        # cleaned_tables[table_name] = cleaned_df
+        cleaned_tables[table_name] = cleaned_df
 
-    # 4. Return all cleaned DataFrames
-    return cleaned_tables
+    # 3. Validate after all tables have been cleaned
+    all_validation_issues = []
+
+    for table_name, df in cleaned_tables.items():
+
+        print(f"\nValidating table: {table_name}")
+
+        issues = validate_data(
+            table_name,
+            df,
+            cleaned_tables
+        )
+
+        all_validation_issues.extend(issues)
+
+    return {
+        "raw_tables": all_tables,
+        "cleaned_tables": cleaned_tables,
+        "validation_issues": all_validation_issues,
+    }
 
 
-# 5. Run the pipeline
 if __name__ == "__main__":
-
-    # Extract tables from PostgreSQL
-
-    # Transform extracted tables
-
-    # Display transformation results
+    results = transform_tables()
+    print("\nTransformation completed.")

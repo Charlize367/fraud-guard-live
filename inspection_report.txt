@@ -1,0 +1,1794 @@
+Loading table: employee_authorization_history...
+Loading table: vendors...
+Loading table: companies...
+Loading table: employees...
+Loading table: vendor_name_history...
+Loading table: expense_categories...
+Loading table: vendor_bank_accounts...
+Loading table: bank_accounts...
+Loading table: bank_account_history...
+Loading table: payment_terms_history...
+Loading table: purchase_orders...
+Loading table: invoice_status_history...
+Loading table: purchase_order_history...
+Loading table: invoices...
+Loading table: invoice_submission_history...
+Loading table: invoice_approval_history...
+Loading table: invoice_risk_assessments...
+Loading table: invoice_detection_results...
+Loading table: invoice_review_decisions...
+
+All tables loaded successfully!
+
+Processing table: employee_authorization_history
+
+============================================================
+INSPECTING TABLE: EMPLOYEE_AUTHORIZATION_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 8
+Total Columns: 11
+Column Names: ['authorization_history_id', 'company_id', 'employee_id', 'authorization_role', 'approval_limit', 'approval_currency', 'effective_from', 'effective_to', 'changed_by_employee_id', 'authorized_by_employee_id', 'authorization_status']
+
+[2] DATA TYPES
+authorization_history_id                   int64
+company_id                                 int64
+employee_id                                int64
+authorization_role                           str
+approval_limit                           float64
+approval_currency                            str
+effective_from               datetime64[us, UTC]
+effective_to                              object
+changed_by_employee_id                   float64
+authorized_by_employee_id                float64
+authorization_status                         str
+dtype: object
+
+[3] MISSING VALUES
+                           Missing Count  Missing Percentage
+authorization_history_id               0                 0.0
+company_id                             0                 0.0
+employee_id                            0                 0.0
+authorization_role                     0                 0.0
+approval_limit                         0                 0.0
+approval_currency                      0                 0.0
+effective_from                         0                 0.0
+effective_to                           8               100.0
+changed_by_employee_id                 2                25.0
+authorized_by_employee_id              2                25.0
+authorization_status                   0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+authorization_role:
+Unique Count: 4
+authorization_role
+FINANCE_ANALYST        2
+PROCUREMENT_MANAGER    2
+AP_MANAGER             2
+FINANCE_MANAGER        2
+Name: count, dtype: int64
+
+approval_currency:
+Unique Count: 1
+approval_currency
+USD    8
+Name: count, dtype: int64
+
+effective_to:
+Unique Count: 1
+effective_to
+None    8
+Name: count, dtype: int64
+
+authorization_status:
+Unique Count: 1
+authorization_status
+APPROVED    8
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                          count  ...           std
+authorization_history_id    8.0  ...       2.44949
+company_id                  8.0  ...      0.534522
+employee_id                 8.0  ...       2.44949
+authorization_role            8  ...           NaN
+approval_limit              8.0  ...  18126.539343
+approval_currency             8  ...           NaN
+effective_from                8  ...           NaN
+effective_to                  0  ...           NaN
+changed_by_employee_id      6.0  ...       2.19089
+authorized_by_employee_id   6.0  ...       2.19089
+authorization_status          8  ...           NaN
+
+[11 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   authorization_history_id  ... authorization_status
+0                         1  ...             APPROVED
+1                         2  ...             APPROVED
+2                         3  ...             APPROVED
+3                         4  ...             APPROVED
+4                         5  ...             APPROVED
+
+[5 rows x 11 columns]
+
+Processing table: vendors
+
+============================================================
+INSPECTING TABLE: VENDORS
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 10
+Total Columns: 8
+Column Names: ['vendor_id', 'company_id', 'vendor_name', 'registration_id', 'relationship_start_date', 'vendor_status', 'created_at', 'updated_at']
+
+[2] DATA TYPES
+vendor_id                                int64
+company_id                               int64
+vendor_name                                str
+registration_id                            str
+relationship_start_date                 object
+vendor_status                              str
+created_at                 datetime64[us, UTC]
+updated_at                 datetime64[us, UTC]
+dtype: object
+
+[3] MISSING VALUES
+                         Missing Count  Missing Percentage
+vendor_id                            0                 0.0
+company_id                           0                 0.0
+vendor_name                          0                 0.0
+registration_id                      0                 0.0
+relationship_start_date              0                 0.0
+vendor_status                        0                 0.0
+created_at                           0                 0.0
+updated_at                           0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+vendor_name:
+Unique Count: 10
+vendor_name
+Evergreen Components      1
+Delta Office Systems      1
+Cedar Maintenance Co.     1
+BluePeak Logistics        1
+Apex Industrial Supply    1
+Juniper Facilities        1
+Indigo Technology         1
+Highline Media            1
+Granite Store Services    1
+Fairway Wholesale         1
+Name: count, dtype: int64
+
+registration_id:
+Unique Count: 10
+registration_id
+NS-1005    1
+NS-1004    1
+NS-1003    1
+NS-1002    1
+NS-1001    1
+HR-2005    1
+HR-2004    1
+HR-2003    1
+HR-2002    1
+HR-2001    1
+Name: count, dtype: int64
+
+relationship_start_date:
+Unique Count: 10
+relationship_start_date
+2021-11-05    1
+2023-02-20    1
+2020-07-01    1
+2022-01-10    1
+2021-03-15    1
+2022-12-01    1
+2021-06-30    1
+2023-04-18    1
+2022-09-01    1
+2020-05-12    1
+Name: count, dtype: int64
+
+vendor_status:
+Unique Count: 1
+vendor_status
+ACTIVE    10
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                        count  ...       std
+vendor_id                10.0  ...   3.02765
+company_id               10.0  ...  0.527046
+vendor_name                10  ...       NaN
+registration_id            10  ...       NaN
+relationship_start_date    10  ...       NaN
+vendor_status              10  ...       NaN
+created_at                 10  ...       NaN
+updated_at                 10  ...       NaN
+
+[8 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   vendor_id  ...                       updated_at
+0          1  ... 2026-11-09 03:07:37.716299+00:00
+1          2  ... 2026-11-09 03:07:37.716299+00:00
+2          3  ... 2026-11-09 03:07:37.716299+00:00
+3          4  ... 2026-11-09 03:07:37.716299+00:00
+4          5  ... 2026-11-09 03:07:37.716299+00:00
+
+[5 rows x 8 columns]
+
+Processing table: companies
+
+============================================================
+INSPECTING TABLE: COMPANIES
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 2
+Total Columns: 3
+Column Names: ['company_id', 'company_name', 'created_at']
+
+[2] DATA TYPES
+company_id                    int64
+company_name                    str
+created_at      datetime64[us, UTC]
+dtype: object
+
+[3] MISSING VALUES
+              Missing Count  Missing Percentage
+company_id                0                 0.0
+company_name              0                 0.0
+created_at                0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+company_name:
+Unique Count: 2
+company_name
+Northstar Manufacturing Ltd.    1
+Harborview Retail Group         1
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+             count unique  ...                               max       std
+company_id     2.0    NaN  ...                               2.0  0.707107
+company_name     2      2  ...                               NaN       NaN
+created_at       2    NaN  ...  2026-11-09 03:07:37.716299+00:00       NaN
+
+[3 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   company_id                  company_name                       created_at
+0           1  Northstar Manufacturing Ltd. 2026-11-09 03:07:37.716299+00:00
+1           2       Harborview Retail Group 2026-11-09 03:07:37.716299+00:00
+
+Processing table: employees
+
+============================================================
+INSPECTING TABLE: EMPLOYEES
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 8
+Total Columns: 8
+Column Names: ['employee_id', 'company_id', 'employee_name', 'role', 'department', 'employee_status', 'approval_limit', 'approval_currency']
+
+[2] DATA TYPES
+employee_id            int64
+company_id             int64
+employee_name            str
+role                     str
+department               str
+employee_status          str
+approval_limit       float64
+approval_currency        str
+dtype: object
+
+[3] MISSING VALUES
+                   Missing Count  Missing Percentage
+employee_id                    0                 0.0
+company_id                     0                 0.0
+employee_name                  0                 0.0
+role                           0                 0.0
+department                     0                 0.0
+employee_status                0                 0.0
+approval_limit                 0                 0.0
+approval_currency              0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+employee_name:
+Unique Count: 8
+employee_name
+Ethan Cole       1
+Olivia Brooks    1
+Daniel Reyes     1
+Maya Chen        1
+Liam Turner      1
+Sophia Garcia    1
+Noah Williams    1
+Ava Patel        1
+Name: count, dtype: int64
+
+role:
+Unique Count: 4
+role
+FINANCE_ANALYST        2
+PROCUREMENT_MANAGER    2
+AP_MANAGER             2
+FINANCE_MANAGER        2
+Name: count, dtype: int64
+
+department:
+Unique Count: 3
+department
+Finance             4
+Procurement         2
+Accounts Payable    2
+Name: count, dtype: int64
+
+employee_status:
+Unique Count: 1
+employee_status
+ACTIVE    8
+Name: count, dtype: int64
+
+approval_currency:
+Unique Count: 1
+approval_currency
+USD    8
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                  count unique              top  ...      50%      75%      max
+employee_id         8.0    NaN              NaN  ...      4.5     6.25      8.0
+company_id          8.0    NaN              NaN  ...      1.5      2.0      2.0
+employee_name         8      8       Ethan Cole  ...      NaN      NaN      NaN
+role                  8      4  FINANCE_ANALYST  ...      NaN      NaN      NaN
+department            8      3          Finance  ...      NaN      NaN      NaN
+employee_status       8      1           ACTIVE  ...      NaN      NaN      NaN
+approval_limit      8.0    NaN              NaN  ...  22500.0  35000.0  50000.0
+approval_currency     8      1              USD  ...      NaN      NaN      NaN
+
+[8 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   employee_id  company_id  ...  approval_limit approval_currency
+0            1           1  ...          5000.0               USD
+1            2           1  ...         30000.0               USD
+2            3           1  ...         15000.0               USD
+3            4           1  ...         50000.0               USD
+4            5           2  ...          5000.0               USD
+
+[5 rows x 8 columns]
+
+Processing table: vendor_name_history
+
+============================================================
+INSPECTING TABLE: VENDOR_NAME_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 10
+Total Columns: 9
+Column Names: ['vendor_name_history_id', 'company_id', 'vendor_id', 'vendor_name', 'effective_from', 'effective_to', 'recorded_at', 'changed_by_employee_id', 'change_reason']
+
+[2] DATA TYPES
+vendor_name_history_id                  int64
+company_id                              int64
+vendor_id                               int64
+vendor_name                               str
+effective_from            datetime64[us, UTC]
+effective_to                           object
+recorded_at               datetime64[us, UTC]
+changed_by_employee_id                  int64
+change_reason                             str
+dtype: object
+
+[3] MISSING VALUES
+                        Missing Count  Missing Percentage
+vendor_name_history_id              0                 0.0
+company_id                          0                 0.0
+vendor_id                           0                 0.0
+vendor_name                         0                 0.0
+effective_from                      0                 0.0
+effective_to                       10               100.0
+recorded_at                         0                 0.0
+changed_by_employee_id              0                 0.0
+change_reason                       0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+vendor_name:
+Unique Count: 10
+vendor_name
+Evergreen Components      1
+Delta Office Systems      1
+Cedar Maintenance Co.     1
+BluePeak Logistics        1
+Apex Industrial Supply    1
+Juniper Facilities        1
+Indigo Technology         1
+Highline Media            1
+Granite Store Services    1
+Fairway Wholesale         1
+Name: count, dtype: int64
+
+effective_to:
+Unique Count: 1
+effective_to
+None    10
+Name: count, dtype: int64
+
+change_reason:
+Unique Count: 1
+change_reason
+Initial registered vendor name    10
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                       count  ...       std
+vendor_name_history_id  10.0  ...   3.02765
+company_id              10.0  ...  0.527046
+vendor_id               10.0  ...   3.02765
+vendor_name               10  ...       NaN
+effective_from            10  ...       NaN
+effective_to               0  ...       NaN
+recorded_at               10  ...       NaN
+changed_by_employee_id  10.0  ...  2.108185
+change_reason             10  ...       NaN
+
+[9 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   vendor_name_history_id  ...                   change_reason
+0                       1  ...  Initial registered vendor name
+1                       2  ...  Initial registered vendor name
+2                       3  ...  Initial registered vendor name
+3                       4  ...  Initial registered vendor name
+4                       5  ...  Initial registered vendor name
+
+[5 rows x 9 columns]
+
+Processing table: expense_categories
+
+============================================================
+INSPECTING TABLE: EXPENSE_CATEGORIES
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 10
+Total Columns: 5
+Column Names: ['category_id', 'company_id', 'category_name', 'monthly_budget', 'budget_currency']
+
+[2] DATA TYPES
+category_id          int64
+company_id           int64
+category_name          str
+monthly_budget     float64
+budget_currency        str
+dtype: object
+
+[3] MISSING VALUES
+                 Missing Count  Missing Percentage
+category_id                  0                 0.0
+company_id                   0                 0.0
+category_name                0                 0.0
+monthly_budget               0                 0.0
+budget_currency              0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+category_name:
+Unique Count: 10
+category_name
+Office Supplies     1
+IT Services         1
+Maintenance         1
+Logistics           1
+Raw Materials       1
+Facilities          1
+Technology          1
+Marketing           1
+Store Operations    1
+Inventory           1
+Name: count, dtype: int64
+
+budget_currency:
+Unique Count: 1
+budget_currency
+USD    10
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                count unique              top  ...      50%      75%       max
+category_id      10.0    NaN              NaN  ...      5.5     7.75      10.0
+company_id       10.0    NaN              NaN  ...      1.5      2.0       2.0
+category_name      10     10  Office Supplies  ...      NaN      NaN       NaN
+monthly_budget   10.0    NaN              NaN  ...  32500.0  43750.0  150000.0
+budget_currency    10      1              USD  ...      NaN      NaN       NaN
+
+[5 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   category_id  company_id    category_name  monthly_budget budget_currency
+0            1           1  Office Supplies          8000.0             USD
+1            2           1      IT Services         30000.0             USD
+2            3           1      Maintenance         25000.0             USD
+3            4           1        Logistics         40000.0             USD
+4            5           1    Raw Materials        120000.0             USD
+
+Processing table: vendor_bank_accounts
+
+============================================================
+INSPECTING TABLE: VENDOR_BANK_ACCOUNTS
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 11
+Total Columns: 10
+Column Names: ['vendor_bank_account_id', 'company_id', 'vendor_id', 'bank_account_id', 'effective_from', 'effective_to', 'authorization_status', 'changed_by_employee_id', 'authorized_by_employee_id', 'change_reason']
+
+[2] DATA TYPES
+vendor_bank_account_id                     int64
+company_id                                 int64
+vendor_id                                  int64
+bank_account_id                            int64
+effective_from               datetime64[us, UTC]
+effective_to                              object
+authorization_status                         str
+changed_by_employee_id                   float64
+authorized_by_employee_id                float64
+change_reason                                str
+dtype: object
+
+[3] MISSING VALUES
+                           Missing Count  Missing Percentage
+vendor_bank_account_id                 0                0.00
+company_id                             0                0.00
+vendor_id                              0                0.00
+bank_account_id                        0                0.00
+effective_from                         0                0.00
+effective_to                          11              100.00
+authorization_status                   0                0.00
+changed_by_employee_id                 1                9.09
+authorized_by_employee_id              1                9.09
+change_reason                          0                0.00
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+effective_to:
+Unique Count: 1
+effective_to
+None    11
+Name: count, dtype: int64
+
+authorization_status:
+Unique Count: 1
+authorization_status
+APPROVED    11
+Name: count, dtype: int64
+
+change_reason:
+Unique Count: 2
+change_reason
+Initial verified bank account             10
+Synthetic shared bank account scenario     1
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                          count  ...       std
+vendor_bank_account_id     11.0  ...  3.316625
+company_id                 11.0  ...  0.522233
+vendor_id                  11.0  ...  3.060006
+bank_account_id            11.0  ...  3.176619
+effective_from               11  ...       NaN
+effective_to                  0  ...       NaN
+authorization_status         11  ...       NaN
+changed_by_employee_id     10.0  ...  2.108185
+authorized_by_employee_id  10.0  ...  2.108185
+change_reason                11  ...       NaN
+
+[10 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   vendor_bank_account_id  ...                  change_reason
+0                       1  ...  Initial verified bank account
+1                       2  ...  Initial verified bank account
+2                       3  ...  Initial verified bank account
+3                       4  ...  Initial verified bank account
+4                       5  ...  Initial verified bank account
+
+[5 rows x 10 columns]
+
+Processing table: bank_accounts
+
+============================================================
+INSPECTING TABLE: BANK_ACCOUNTS
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 10
+Total Columns: 6
+Column Names: ['bank_account_id', 'bank_name', 'account_reference_token', 'account_last4', 'account_status', 'created_at']
+
+[2] DATA TYPES
+bank_account_id                          int64
+bank_name                                  str
+account_reference_token                    str
+account_last4                              str
+account_status                             str
+created_at                 datetime64[us, UTC]
+dtype: object
+
+[3] MISSING VALUES
+                         Missing Count  Missing Percentage
+bank_account_id                      0                 0.0
+bank_name                            0                 0.0
+account_reference_token              0                 0.0
+account_last4                        0                 0.0
+account_status                       0                 0.0
+created_at                           0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+bank_name:
+Unique Count: 3
+bank_name
+First National Bank      4
+Metro Commercial Bank    3
+Union Trust              3
+Name: count, dtype: int64
+
+account_reference_token:
+Unique Count: 10
+account_reference_token
+tok_demo_apex_001         1
+tok_demo_bluepeak_002     1
+tok_demo_cedar_003        1
+tok_demo_delta_004        1
+tok_demo_evergreen_005    1
+tok_demo_fairway_006      1
+tok_demo_granite_007      1
+tok_demo_highline_008     1
+tok_demo_indigo_009       1
+tok_demo_juniper_010      1
+Name: count, dtype: int64
+
+account_last4:
+Unique Count: 10
+account_last4
+4101    1
+5202    1
+6303    1
+7404    1
+8505    1
+9606    1
+1707    1
+2808    1
+3909    1
+4010    1
+Name: count, dtype: int64
+
+account_status:
+Unique Count: 1
+account_status
+ACTIVE    10
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                        count  ...      std
+bank_account_id          10.0  ...  3.02765
+bank_name                  10  ...      NaN
+account_reference_token    10  ...      NaN
+account_last4              10  ...      NaN
+account_status             10  ...      NaN
+created_at                 10  ...      NaN
+
+[6 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   bank_account_id  ...                       created_at
+0                1  ... 2026-11-09 03:07:37.716299+00:00
+1                2  ... 2026-11-09 03:07:37.716299+00:00
+2                3  ... 2026-11-09 03:07:37.716299+00:00
+3                4  ... 2026-11-09 03:07:37.716299+00:00
+4                5  ... 2026-11-09 03:07:37.716299+00:00
+
+[5 rows x 6 columns]
+
+Processing table: bank_account_history
+
+============================================================
+INSPECTING TABLE: BANK_ACCOUNT_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 1
+Total Columns: 10
+Column Names: ['bank_account_history_id', 'company_id', 'vendor_id', 'old_bank_account_id', 'new_bank_account_id', 'changed_at', 'changed_by_employee_id', 'authorized_by_employee_id', 'authorization_status', 'change_reason']
+
+[2] DATA TYPES
+bank_account_history_id                    int64
+company_id                                 int64
+vendor_id                                  int64
+old_bank_account_id                        int64
+new_bank_account_id                        int64
+changed_at                   datetime64[us, UTC]
+changed_by_employee_id                     int64
+authorized_by_employee_id                 object
+authorization_status                         str
+change_reason                                str
+dtype: object
+
+[3] MISSING VALUES
+                           Missing Count  Missing Percentage
+bank_account_history_id                0                 0.0
+company_id                             0                 0.0
+vendor_id                              0                 0.0
+old_bank_account_id                    0                 0.0
+new_bank_account_id                    0                 0.0
+changed_at                             0                 0.0
+changed_by_employee_id                 0                 0.0
+authorized_by_employee_id              1               100.0
+authorization_status                   0                 0.0
+change_reason                          0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+authorized_by_employee_id:
+Unique Count: 1
+authorized_by_employee_id
+None    1
+Name: count, dtype: int64
+
+authorization_status:
+Unique Count: 1
+authorization_status
+PENDING    1
+Name: count, dtype: int64
+
+change_reason:
+Unique Count: 1
+change_reason
+Synthetic recent bank detail change awaiting authorization    1
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                          count unique  ...                        max  std
+bank_account_history_id     1.0    NaN  ...                        1.0  NaN
+company_id                  1.0    NaN  ...                        1.0  NaN
+vendor_id                   1.0    NaN  ...                        3.0  NaN
+old_bank_account_id         1.0    NaN  ...                        3.0  NaN
+new_bank_account_id         1.0    NaN  ...                        1.0  NaN
+changed_at                    1    NaN  ...  2026-09-09 14:00:00+00:00  NaN
+changed_by_employee_id      1.0    NaN  ...                        3.0  NaN
+authorized_by_employee_id     0      0  ...                        NaN  NaN
+authorization_status          1      1  ...                        NaN  NaN
+change_reason                 1      1  ...                        NaN  NaN
+
+[10 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   bank_account_history_id  ...                                      change_reason
+0                        1  ...  Synthetic recent bank detail change awaiting a...
+
+[1 rows x 10 columns]
+
+Processing table: payment_terms_history
+
+============================================================
+INSPECTING TABLE: PAYMENT_TERMS_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 1
+Total Columns: 10
+Column Names: ['payment_terms_history_id', 'company_id', 'vendor_id', 'previous_payment_terms', 'new_payment_terms', 'changed_at', 'changed_by_employee_id', 'authorized_by_employee_id', 'authorization_status', 'change_reason']
+
+[2] DATA TYPES
+payment_terms_history_id                   int64
+company_id                                 int64
+vendor_id                                  int64
+previous_payment_terms                       str
+new_payment_terms                            str
+changed_at                   datetime64[us, UTC]
+changed_by_employee_id                     int64
+authorized_by_employee_id                 object
+authorization_status                         str
+change_reason                                str
+dtype: object
+
+[3] MISSING VALUES
+                           Missing Count  Missing Percentage
+payment_terms_history_id               0                 0.0
+company_id                             0                 0.0
+vendor_id                              0                 0.0
+previous_payment_terms                 0                 0.0
+new_payment_terms                      0                 0.0
+changed_at                             0                 0.0
+changed_by_employee_id                 0                 0.0
+authorized_by_employee_id              1               100.0
+authorization_status                   0                 0.0
+change_reason                          0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+previous_payment_terms:
+Unique Count: 1
+previous_payment_terms
+Net 30    1
+Name: count, dtype: int64
+
+new_payment_terms:
+Unique Count: 1
+new_payment_terms
+Net 15    1
+Name: count, dtype: int64
+
+authorized_by_employee_id:
+Unique Count: 1
+authorized_by_employee_id
+None    1
+Name: count, dtype: int64
+
+authorization_status:
+Unique Count: 1
+authorization_status
+PENDING    1
+Name: count, dtype: int64
+
+change_reason:
+Unique Count: 1
+change_reason
+Synthetic payment-term change    1
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                          count unique  ...                        max  std
+payment_terms_history_id    1.0    NaN  ...                        1.0  NaN
+company_id                  1.0    NaN  ...                        1.0  NaN
+vendor_id                   1.0    NaN  ...                        3.0  NaN
+previous_payment_terms        1      1  ...                        NaN  NaN
+new_payment_terms             1      1  ...                        NaN  NaN
+changed_at                    1    NaN  ...  2026-09-09 14:05:00+00:00  NaN
+changed_by_employee_id      1.0    NaN  ...                        3.0  NaN
+authorized_by_employee_id     0      0  ...                        NaN  NaN
+authorization_status          1      1  ...                        NaN  NaN
+change_reason                 1      1  ...                        NaN  NaN
+
+[10 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   payment_terms_history_id  ...                  change_reason
+0                         1  ...  Synthetic payment-term change
+
+[1 rows x 10 columns]
+
+Processing table: purchase_orders
+
+============================================================
+INSPECTING TABLE: PURCHASE_ORDERS
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 10
+Total Columns: 9
+Column Names: ['purchase_order_id', 'company_id', 'vendor_id', 'po_number', 'authorized_amount', 'currency', 'creation_date', 'status', 'expiration_date']
+
+[2] DATA TYPES
+purchase_order_id      int64
+company_id             int64
+vendor_id              int64
+po_number                str
+authorized_amount    float64
+currency                 str
+creation_date         object
+status                   str
+expiration_date       object
+dtype: object
+
+[3] MISSING VALUES
+                   Missing Count  Missing Percentage
+purchase_order_id              0                 0.0
+company_id                     0                 0.0
+vendor_id                      0                 0.0
+po_number                      0                 0.0
+authorized_amount              0                 0.0
+currency                       0                 0.0
+creation_date                  0                 0.0
+status                         0                 0.0
+expiration_date                0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+po_number:
+Unique Count: 10
+po_number
+NS-PO-1005    1
+NS-PO-1004    1
+NS-PO-1003    1
+NS-PO-1002    1
+NS-PO-1001    1
+HR-PO-2005    1
+HR-PO-2004    1
+HR-PO-2003    1
+HR-PO-2002    1
+HR-PO-2001    1
+Name: count, dtype: int64
+
+currency:
+Unique Count: 1
+currency
+USD    10
+Name: count, dtype: int64
+
+creation_date:
+Unique Count: 10
+creation_date
+2026-03-15    1
+2026-03-01    1
+2026-02-15    1
+2026-02-01    1
+2026-01-10    1
+2026-03-20    1
+2026-03-05    1
+2026-02-20    1
+2026-02-10    1
+2026-01-12    1
+Name: count, dtype: int64
+
+status:
+Unique Count: 1
+status
+ACTIVE    10
+Name: count, dtype: int64
+
+expiration_date:
+Unique Count: 1
+expiration_date
+2027-12-31    10
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                  count unique         top  ...      50%      75%      max
+purchase_order_id  10.0    NaN         NaN  ...      5.5     7.75     10.0
+company_id         10.0    NaN         NaN  ...      1.5      2.0      2.0
+vendor_id          10.0    NaN         NaN  ...      5.5     7.75     10.0
+po_number            10     10  NS-PO-1005  ...      NaN      NaN      NaN
+authorized_amount  10.0    NaN         NaN  ...  17000.0  24250.0  40000.0
+currency             10      1         USD  ...      NaN      NaN      NaN
+creation_date        10     10  2026-03-15  ...      NaN      NaN      NaN
+status               10      1      ACTIVE  ...      NaN      NaN      NaN
+expiration_date      10      1  2027-12-31  ...      NaN      NaN      NaN
+
+[9 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   purchase_order_id  company_id  ...  status expiration_date
+0                  1           1  ...  ACTIVE      2027-12-31
+1                  2           1  ...  ACTIVE      2027-12-31
+2                  3           1  ...  ACTIVE      2027-12-31
+3                  4           1  ...  ACTIVE      2027-12-31
+4                  5           1  ...  ACTIVE      2027-12-31
+
+[5 rows x 9 columns]
+
+Processing table: invoice_status_history
+
+============================================================
+INSPECTING TABLE: INVOICE_STATUS_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 30
+Total Columns: 8
+Column Names: ['invoice_status_history_id', 'company_id', 'invoice_id', 'previous_status', 'new_status', 'changed_by_employee_id', 'changed_at', 'reason']
+
+[2] DATA TYPES
+invoice_status_history_id                  int64
+company_id                                 int64
+invoice_id                                 int64
+previous_status                           object
+new_status                                   str
+changed_by_employee_id                     int64
+changed_at                   datetime64[us, UTC]
+reason                                       str
+dtype: object
+
+[3] MISSING VALUES
+                           Missing Count  Missing Percentage
+invoice_status_history_id              0                 0.0
+company_id                             0                 0.0
+invoice_id                             0                 0.0
+previous_status                       30               100.0
+new_status                             0                 0.0
+changed_by_employee_id                 0                 0.0
+changed_at                             0                 0.0
+reason                                 0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+previous_status:
+Unique Count: 1
+previous_status
+None    30
+Name: count, dtype: int64
+
+new_status:
+Unique Count: 4
+new_status
+APPROVED        11
+PAID             8
+UNDER_REVIEW     6
+ON_HOLD          5
+Name: count, dtype: int64
+
+reason:
+Unique Count: 1
+reason
+Initial seeded invoice status    30
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                          count  ...       std
+invoice_status_history_id  30.0  ...  8.803408
+company_id                 30.0  ...  0.479463
+invoice_id                 30.0  ...  8.803408
+previous_status               0  ...       NaN
+new_status                   30  ...       NaN
+changed_by_employee_id     30.0  ...   2.19613
+changed_at                   30  ...       NaN
+reason                       30  ...       NaN
+
+[8 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   invoice_status_history_id  ...                         reason
+0                          1  ...  Initial seeded invoice status
+1                          2  ...  Initial seeded invoice status
+2                          3  ...  Initial seeded invoice status
+3                          4  ...  Initial seeded invoice status
+4                          5  ...  Initial seeded invoice status
+
+[5 rows x 8 columns]
+
+Processing table: purchase_order_history
+
+============================================================
+INSPECTING TABLE: PURCHASE_ORDER_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 1
+Total Columns: 8
+Column Names: ['purchase_order_history_id', 'company_id', 'purchase_order_id', 'previous_authorized_amount', 'new_authorized_amount', 'changed_at', 'changed_by_employee_id', 'change_reason']
+
+[2] DATA TYPES
+purchase_order_history_id                   int64
+company_id                                  int64
+purchase_order_id                           int64
+previous_authorized_amount                float64
+new_authorized_amount                     float64
+changed_at                    datetime64[us, UTC]
+changed_by_employee_id                      int64
+change_reason                                 str
+dtype: object
+
+[3] MISSING VALUES
+                            Missing Count  Missing Percentage
+purchase_order_history_id               0                 0.0
+company_id                              0                 0.0
+purchase_order_id                       0                 0.0
+previous_authorized_amount              0                 0.0
+new_authorized_amount                   0                 0.0
+changed_at                              0                 0.0
+changed_by_employee_id                  0                 0.0
+change_reason                           0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+change_reason:
+Unique Count: 1
+change_reason
+Synthetic purchase order amendment    1
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                           count unique  ...                        max  std
+purchase_order_history_id    1.0    NaN  ...                        1.0  NaN
+company_id                   1.0    NaN  ...                        1.0  NaN
+purchase_order_id            1.0    NaN  ...                        3.0  NaN
+previous_authorized_amount   1.0    NaN  ...                    12000.0  NaN
+new_authorized_amount        1.0    NaN  ...                    20000.0  NaN
+changed_at                     1    NaN  ...  2026-08-28 12:00:00+00:00  NaN
+changed_by_employee_id       1.0    NaN  ...                        2.0  NaN
+change_reason                  1      1  ...                        NaN  NaN
+
+[8 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   purchase_order_history_id  ...                       change_reason
+0                          1  ...  Synthetic purchase order amendment
+
+[1 rows x 8 columns]
+
+Processing table: invoices
+
+============================================================
+INSPECTING TABLE: INVOICES
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 30
+Total Columns: 19
+Column Names: ['invoice_id', 'company_id', 'vendor_id', 'vendor_invoice_number', 'vendor_name_snapshot', 'invoice_amount', 'currency', 'invoice_date', 'submission_timestamp', 'purchase_order_id', 'category_id', 'cost_code', 'payment_terms_snapshot', 'bank_account_id', 'bank_account_reference_snapshot', 'submitted_by_employee_id', 'status', 'created_at', 'updated_at']
+
+[2] DATA TYPES
+invoice_id                                       int64
+company_id                                       int64
+vendor_id                                        int64
+vendor_invoice_number                              str
+vendor_name_snapshot                               str
+invoice_amount                                 float64
+currency                                           str
+invoice_date                                    object
+submission_timestamp               datetime64[us, UTC]
+purchase_order_id                                int64
+category_id                                      int64
+cost_code                                          str
+payment_terms_snapshot                             str
+bank_account_id                                  int64
+bank_account_reference_snapshot                    str
+submitted_by_employee_id                         int64
+status                                             str
+created_at                         datetime64[us, UTC]
+updated_at                         datetime64[us, UTC]
+dtype: object
+
+[3] MISSING VALUES
+                                 Missing Count  Missing Percentage
+invoice_id                                   0                 0.0
+company_id                                   0                 0.0
+vendor_id                                    0                 0.0
+vendor_invoice_number                        0                 0.0
+vendor_name_snapshot                         0                 0.0
+invoice_amount                               0                 0.0
+currency                                     0                 0.0
+invoice_date                                 0                 0.0
+submission_timestamp                         0                 0.0
+purchase_order_id                            0                 0.0
+category_id                                  0                 0.0
+cost_code                                    0                 0.0
+payment_terms_snapshot                       0                 0.0
+bank_account_id                              0                 0.0
+bank_account_reference_snapshot              0                 0.0
+submitted_by_employee_id                     0                 0.0
+status                                       0                 0.0
+created_at                                   0                 0.0
+updated_at                                   0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+vendor_invoice_number:
+Unique Count: 29
+vendor_invoice_number
+APX-DUP-77         2
+BPL-26003          1
+APX-26004          1
+EVG-26003          1
+DOS-PO-MISMATCH    1
+CED-BANK-01        1
+BPL-SPLIT-02       1
+BPL-SPLIT-01       1
+EVG-26002          1
+EVG-26001          1
+Name: count, dtype: int64
+
+vendor_name_snapshot:
+Unique Count: 10
+vendor_name_snapshot
+Apex Industrial Supply    6
+BluePeak Logistics        5
+Evergreen Components      3
+Delta Office Systems      3
+Cedar Maintenance Co.     3
+Juniper Facilities        2
+Indigo Technology         2
+Highline Media            2
+Granite Store Services    2
+Fairway Wholesale         2
+Name: count, dtype: int64
+
+currency:
+Unique Count: 1
+currency
+USD    30
+Name: count, dtype: int64
+
+invoice_date:
+Unique Count: 29
+invoice_date
+2026-09-08    2
+2026-09-20    1
+2026-09-18    1
+2026-09-15    1
+2026-09-12    1
+2026-09-10    1
+2026-09-05    1
+2026-09-03    1
+2026-08-20    1
+2026-08-09    1
+Name: count, dtype: int64
+
+cost_code:
+Unique Count: 9
+cost_code
+DEMO-Raw    9
+DEMO-Log    5
+DEMO-Off    3
+DEMO-Mai    3
+DEMO-Fac    2
+DEMO-Tec    2
+DEMO-Mar    2
+DEMO-Sto    2
+DEMO-Inv    2
+Name: count, dtype: int64
+
+payment_terms_snapshot:
+Unique Count: 2
+payment_terms_snapshot
+Net 30    29
+Net 15     1
+Name: count, dtype: int64
+
+bank_account_reference_snapshot:
+Unique Count: 10
+bank_account_reference_snapshot
+tok_demo_apex_001         8
+tok_demo_bluepeak_002     5
+tok_demo_evergreen_005    3
+tok_demo_delta_004        3
+tok_demo_cedar_003        2
+tok_demo_juniper_010      2
+tok_demo_indigo_009       2
+tok_demo_highline_008     2
+tok_demo_fairway_006      2
+tok_demo_granite_007      1
+Name: count, dtype: int64
+
+status:
+Unique Count: 4
+status
+APPROVED        11
+PAID             8
+UNDER_REVIEW     6
+ON_HOLD          5
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                                count  ...         std
+invoice_id                       30.0  ...    8.803408
+company_id                       30.0  ...    0.479463
+vendor_id                        30.0  ...    2.638355
+vendor_invoice_number              30  ...         NaN
+vendor_name_snapshot               30  ...         NaN
+invoice_amount                   30.0  ...  6281.62253
+currency                           30  ...         NaN
+invoice_date                       30  ...         NaN
+submission_timestamp               30  ...         NaN
+purchase_order_id                30.0  ...    2.713101
+category_id                      30.0  ...    2.445028
+cost_code                          30  ...         NaN
+payment_terms_snapshot             30  ...         NaN
+bank_account_id                  30.0  ...    3.036937
+bank_account_reference_snapshot    30  ...         NaN
+submitted_by_employee_id         30.0  ...     2.19613
+status                             30  ...         NaN
+created_at                         30  ...         NaN
+updated_at                         30  ...         NaN
+
+[19 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   invoice_id  ...                       updated_at
+0           1  ... 2026-11-09 03:07:37.716299+00:00
+1           2  ... 2026-11-09 03:07:37.716299+00:00
+2           3  ... 2026-11-09 03:07:37.716299+00:00
+3           4  ... 2026-11-09 03:07:37.716299+00:00
+4           5  ... 2026-11-09 03:07:37.716299+00:00
+
+[5 rows x 19 columns]
+
+Processing table: invoice_submission_history
+
+============================================================
+INSPECTING TABLE: INVOICE_SUBMISSION_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 32
+Total Columns: 8
+Column Names: ['submission_history_id', 'company_id', 'invoice_id', 'submission_number', 'submitted_at', 'submitted_by_employee_id', 'submission_status', 'rejection_reason']
+
+[2] DATA TYPES
+submission_history_id                     int64
+company_id                                int64
+invoice_id                                int64
+submission_number                         int64
+submitted_at                datetime64[us, UTC]
+submitted_by_employee_id                  int64
+submission_status                           str
+rejection_reason                            str
+dtype: object
+
+[3] MISSING VALUES
+                          Missing Count  Missing Percentage
+submission_history_id                 0                0.00
+company_id                            0                0.00
+invoice_id                            0                0.00
+submission_number                     0                0.00
+submitted_at                          0                0.00
+submitted_by_employee_id              0                0.00
+submission_status                     0                0.00
+rejection_reason                     30               93.75
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+submission_status:
+Unique Count: 2
+submission_status
+SUBMITTED      30
+RESUBMITTED     2
+Name: count, dtype: int64
+
+rejection_reason:
+Unique Count: 2
+rejection_reason
+NaN                                         30
+Synthetic duplicate invoice resubmission     2
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                         count unique  ...                        max       std
+submission_history_id     32.0    NaN  ...                       32.0  9.380832
+company_id                32.0    NaN  ...                        2.0  0.470929
+invoice_id                32.0    NaN  ...                       30.0  8.687913
+submission_number         32.0    NaN  ...                        2.0  0.245935
+submitted_at                32    NaN  ...  2026-09-21 00:00:00+00:00       NaN
+submitted_by_employee_id  32.0    NaN  ...                        7.0   2.18407
+submission_status           32      2  ...                        NaN       NaN
+rejection_reason             2      1  ...                        NaN       NaN
+
+[8 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   submission_history_id  company_id  ... submission_status rejection_reason
+0                      1           1  ...         SUBMITTED              NaN
+1                      2           1  ...         SUBMITTED              NaN
+2                      3           1  ...         SUBMITTED              NaN
+3                      4           1  ...         SUBMITTED              NaN
+4                      5           1  ...         SUBMITTED              NaN
+
+[5 rows x 8 columns]
+
+Processing table: invoice_approval_history
+
+============================================================
+INSPECTING TABLE: INVOICE_APPROVAL_HISTORY
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 30
+Total Columns: 7
+Column Names: ['approval_history_id', 'company_id', 'invoice_id', 'approver_id', 'approval_status', 'approved_at', 'comments']
+
+[2] DATA TYPES
+approval_history_id                  int64
+company_id                           int64
+invoice_id                           int64
+approver_id                          int64
+approval_status                        str
+approved_at            datetime64[us, UTC]
+comments                               str
+dtype: object
+
+[3] MISSING VALUES
+                     Missing Count  Missing Percentage
+approval_history_id              0                0.00
+company_id                       0                0.00
+invoice_id                       0                0.00
+approver_id                      0                0.00
+approval_status                  0                0.00
+approved_at                     11               36.67
+comments                         0                0.00
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+approval_status:
+Unique Count: 2
+approval_status
+APPROVED    19
+PENDING     11
+Name: count, dtype: int64
+
+comments:
+Unique Count: 1
+comments
+Synthetic demonstration approval record    30
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                    count unique  ...                        max       std
+approval_history_id  30.0    NaN  ...                       30.0  8.803408
+company_id           30.0    NaN  ...                        2.0  0.479463
+invoice_id           30.0    NaN  ...                       30.0  8.803408
+approver_id          30.0    NaN  ...                        8.0  1.917853
+approval_status        30      2  ...                        NaN       NaN
+approved_at            19    NaN  ...  2026-09-23 00:00:00+00:00       NaN
+comments               30      1  ...                        NaN       NaN
+
+[7 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   approval_history_id  ...                                 comments
+0                    1  ...  Synthetic demonstration approval record
+1                    2  ...  Synthetic demonstration approval record
+2                    3  ...  Synthetic demonstration approval record
+3                    4  ...  Synthetic demonstration approval record
+4                    5  ...  Synthetic demonstration approval record
+
+[5 rows x 7 columns]
+
+Processing table: invoice_risk_assessments
+
+============================================================
+INSPECTING TABLE: INVOICE_RISK_ASSESSMENTS
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 30
+Total Columns: 10
+Column Names: ['risk_assessment_id', 'invoice_id', 'assessment_version', 'risk_score', 'risk_level', 'model_version', 'ruleset_version', 'assessment_status', 'explanation', 'assessed_at']
+
+[2] DATA TYPES
+risk_assessment_id                  int64
+invoice_id                          int64
+assessment_version                  int64
+risk_score                        float64
+risk_level                            str
+model_version                         str
+ruleset_version                       str
+assessment_status                     str
+explanation                           str
+assessed_at           datetime64[us, UTC]
+dtype: object
+
+[3] MISSING VALUES
+                    Missing Count  Missing Percentage
+risk_assessment_id              0                 0.0
+invoice_id                      0                 0.0
+assessment_version              0                 0.0
+risk_score                      0                 0.0
+risk_level                      0                 0.0
+model_version                   0                 0.0
+ruleset_version                 0                 0.0
+assessment_status               0                 0.0
+explanation                     0                 0.0
+assessed_at                     0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+risk_level:
+Unique Count: 4
+risk_level
+LOW         19
+CRITICAL     8
+HIGH         2
+MEDIUM       1
+Name: count, dtype: int64
+
+model_version:
+Unique Count: 1
+model_version
+seed-demo-0.1    30
+Name: count, dtype: int64
+
+ruleset_version:
+Unique Count: 1
+ruleset_version
+rules-demo-0.1    30
+Name: count, dtype: int64
+
+assessment_status:
+Unique Count: 1
+assessment_status
+COMPLETED    30
+Name: count, dtype: int64
+
+explanation:
+Unique Count: 1
+explanation
+Synthetic illustrative risk assessment. Human review required.    30
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                   count unique  ...                        max        std
+risk_assessment_id  30.0    NaN  ...                       30.0   8.803408
+invoice_id          30.0    NaN  ...                       30.0   8.803408
+assessment_version  30.0    NaN  ...                        1.0        0.0
+risk_score          30.0    NaN  ...                       92.0  37.154616
+risk_level            30      4  ...                        NaN        NaN
+model_version         30      1  ...                        NaN        NaN
+ruleset_version       30      1  ...                        NaN        NaN
+assessment_status     30      1  ...                        NaN        NaN
+explanation           30      1  ...                        NaN        NaN
+assessed_at           30    NaN  ...  2026-09-21 00:05:00+00:00        NaN
+
+[10 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   risk_assessment_id  ...               assessed_at
+0                   1  ... 2026-09-21 00:05:00+00:00
+1                   2  ... 2026-09-19 00:05:00+00:00
+2                   3  ... 2026-09-16 00:05:00+00:00
+3                   4  ... 2026-09-13 00:05:00+00:00
+4                   5  ... 2026-09-11 00:05:00+00:00
+
+[5 rows x 10 columns]
+
+Processing table: invoice_detection_results
+
+============================================================
+INSPECTING TABLE: INVOICE_DETECTION_RESULTS
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 10
+Total Columns: 9
+Column Names: ['detection_result_id', 'risk_assessment_id', 'detection_type', 'detection_name', 'detection_source', 'severity', 'finding_score', 'evidence', 'created_at']
+
+[2] DATA TYPES
+detection_result_id                  int64
+risk_assessment_id                   int64
+detection_type                         str
+detection_name                         str
+detection_source                       str
+severity                               str
+finding_score                      float64
+evidence                            object
+created_at             datetime64[us, UTC]
+dtype: object
+
+[3] MISSING VALUES
+                     Missing Count  Missing Percentage
+detection_result_id              0                 0.0
+risk_assessment_id               0                 0.0
+detection_type                   0                 0.0
+detection_name                   0                 0.0
+detection_source                 0                 0.0
+severity                         0                 0.0
+finding_score                    0                 0.0
+evidence                         0                 0.0
+created_at                       0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+detection_type:
+Unique Count: 6
+detection_type
+DUPLICATE_INVOICE             2
+UNUSUAL_AMOUNT                2
+POSSIBLE_INVOICE_SPLITTING    2
+PO_VENDOR_MISMATCH            2
+RECENT_BANK_CHANGE            1
+SHARED_BANK_ACCOUNT           1
+Name: count, dtype: int64
+
+detection_name:
+Unique Count: 6
+detection_name
+Possible duplicate invoice number             2
+Invoice amount unusually high                 2
+Multiple invoices near approval threshold     2
+Purchase order belongs to another vendor      2
+Invoice follows pending bank detail change    1
+Bank account shared across vendors            1
+Name: count, dtype: int64
+
+detection_source:
+Unique Count: 1
+detection_source
+RULE    10
+Name: count, dtype: int64
+
+severity:
+Unique Count: 2
+severity
+CRITICAL    5
+HIGH        5
+Name: count, dtype: int64
+
+evidence:
+Unique Count: 9
+evidence
+{"invoice_number": "APX-DUP-77", "note": "Repeated invoice number", "vendor": "Apex Industrial Supply"}         2
+{"amount": 27500.0, "note": "Amount exceeds demo review threshold"}                                             1
+{"amount": 24500.0, "note": "Amount exceeds demo review threshold"}                                             1
+{"amount": 4850.0, "invoice_number": "BPL-SPLIT-02"}                                                            1
+{"amount": 4900.0, "invoice_number": "BPL-SPLIT-01"}                                                            1
+{"note": "Bank change pending authorization"}                                                                   1
+{"invoice_vendor": "Delta Office Systems", "po_number": "NS-PO-1001", "po_vendor": "Apex Industrial Supply"}    1
+{"invoice_vendor": "Indigo Technology", "po_number": "HR-PO-2001", "po_vendor": "Fairway Wholesale"}            1
+{"bank_token": "tok_demo_apex_001", "note": "Account linked to multiple vendors"}                               1
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                    count  ...       std
+detection_result_id  10.0  ...   3.02765
+risk_assessment_id   10.0  ...  8.412293
+detection_type         10  ...       NaN
+detection_name         10  ...       NaN
+detection_source       10  ...       NaN
+severity               10  ...       NaN
+finding_score        10.0  ...  6.471304
+evidence               10  ...       NaN
+created_at             10  ...       NaN
+
+[9 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   detection_result_id  ...                       created_at
+0                    1  ... 2026-11-09 03:07:37.716299+00:00
+1                    2  ... 2026-11-09 03:07:37.716299+00:00
+2                    3  ... 2026-11-09 03:07:37.716299+00:00
+3                    4  ... 2026-11-09 03:07:37.716299+00:00
+4                    5  ... 2026-11-09 03:07:37.716299+00:00
+
+[5 rows x 9 columns]
+
+Processing table: invoice_review_decisions
+
+============================================================
+INSPECTING TABLE: INVOICE_REVIEW_DECISIONS
+============================================================
+
+[1] BASIC INFORMATION
+Total Rows: 8
+Total Columns: 9
+Column Names: ['review_decision_id', 'company_id', 'invoice_id', 'risk_assessment_id', 'reviewer_employee_id', 'decision', 'decision_reason', 'decided_at', 'follow_up_status']
+
+[2] DATA TYPES
+review_decision_id                    int64
+company_id                            int64
+invoice_id                            int64
+risk_assessment_id                    int64
+reviewer_employee_id                  int64
+decision                                str
+decision_reason                         str
+decided_at              datetime64[us, UTC]
+follow_up_status                        str
+dtype: object
+
+[3] MISSING VALUES
+                      Missing Count  Missing Percentage
+review_decision_id                0                 0.0
+company_id                        0                 0.0
+invoice_id                        0                 0.0
+risk_assessment_id                0                 0.0
+reviewer_employee_id              0                 0.0
+decision                          0                 0.0
+decision_reason                   0                 0.0
+decided_at                        0                 0.0
+follow_up_status                  0                 0.0
+
+[4] DUPLICATE RECORDS
+Total Duplicate Rows: 0
+
+[5] UNIQUE VALUES
+
+decision:
+Unique Count: 2
+decision
+REQUEST_INFO    5
+ESCALATE        3
+Name: count, dtype: int64
+
+decision_reason:
+Unique Count: 1
+decision_reason
+Synthetic review decision for workflow demonstration. Not a real fraud determination.    8
+Name: count, dtype: int64
+
+follow_up_status:
+Unique Count: 2
+follow_up_status
+AWAITING_INFO    5
+IN_PROGRESS      3
+Name: count, dtype: int64
+
+[6] STATISTICAL SUMMARY
+                     count unique  ...                        max       std
+review_decision_id     8.0    NaN  ...                        8.0   2.44949
+company_id             8.0    NaN  ...                        2.0   0.46291
+invoice_id             8.0    NaN  ...                       24.0  7.818248
+risk_assessment_id     8.0    NaN  ...                       24.0  7.818248
+reviewer_employee_id   8.0    NaN  ...                        8.0   1.85164
+decision                 8      2  ...                        NaN       NaN
+decision_reason          8      1  ...                        NaN       NaN
+decided_at               8    NaN  ...  2026-09-15 01:00:00+00:00       NaN
+follow_up_status         8      2  ...                        NaN       NaN
+
+[9 rows x 11 columns]
+
+[7] SAMPLE RECORDS
+   review_decision_id  ... follow_up_status
+0                   1  ...      IN_PROGRESS
+1                   2  ...      IN_PROGRESS
+2                   3  ...    AWAITING_INFO
+3                   4  ...    AWAITING_INFO
+4                   5  ...    AWAITING_INFO
+
+[5 rows x 9 columns]
+
+Completed transformations for tables: ['employee_authorization_history', 'vendors', 'companies', 'employees', 'vendor_name_history', 'expense_categories', 'vendor_bank_accounts', 'bank_accounts', 'bank_account_history', 'payment_terms_history', 'purchase_orders', 'invoice_status_history', 'purchase_order_history', 'invoices', 'invoice_submission_history', 'invoice_approval_history', 'invoice_risk_assessments', 'invoice_detection_results', 'invoice_review_decisions']

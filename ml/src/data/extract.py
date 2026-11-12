@@ -6,7 +6,7 @@ from sqlalchemy import create_engine, text
 def extract_tables():
 
     # 1. Set up database connection
-    db_url = "postgresql+psycopg2://liz:password@localhost:5442/fraud_guard_live"
+    db_url = "postgresql+psycopg2://liz:password@localhost:5432/fraud_guard_live"
     engine = create_engine(db_url)
 
     # 2. Dictionary to hold all extracted DataFrames

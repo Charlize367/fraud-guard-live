@@ -8,4 +8,4 @@ RAW_DATA_DIR = DATA_DIR / "raw"
 PROCESSED_DATA_DIR = DATA_DIR / "processed"
 EXTERNAL_DATA_DIR = DATA_DIR / "external"
 
-DB_URL = "postgresql+psycopg2://liz:password@localhost:5442/fraud_guard_live"
+DB_URL = "postgresql+psycopg2://liz:password@localhost:5432/fraud_guard_live"
