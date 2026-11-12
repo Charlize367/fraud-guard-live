@@ -1,0 +1,47 @@
+digraph ERD {
+  graph [rankdir=LR, splines=ortho, nodesep=0.42, ranksep=0.85, pad=0.25, bgcolor="white", fontname="Helvetica", label="FRAUD GUARD LIVE — ENTITY RELATIONSHIP DIAGRAM", labelloc=t, fontsize=22];
+  node [shape=plain, fontname="Helvetica", fontsize=9];
+  edge [color="#59636e", penwidth=1.15, arrowsize=0.7, fontname="Helvetica", fontsize=8];
+
+  vendors [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#3B2A20"><FONT COLOR="white"><B>vendors</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK vendor_id<BR ALIGN="LEFT"/>company_id<BR ALIGN="LEFT"/>vendor_name<BR ALIGN="LEFT"/>registration_id<BR ALIGN="LEFT"/>relationship_start_date<BR ALIGN="LEFT"/>vendor_status</TD></TR></TABLE>>];
+  vendor_name_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>vendor_name_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK vendor_name_history_id<BR ALIGN="LEFT"/>FK vendor_id<BR ALIGN="LEFT"/>vendor_name<BR ALIGN="LEFT"/>effective_from / effective_to<BR ALIGN="LEFT"/>changed_by_employee_id</TD></TR></TABLE>>];
+  bank_accounts [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#3B2A20"><FONT COLOR="white"><B>bank_accounts</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK bank_account_id<BR ALIGN="LEFT"/>bank_name<BR ALIGN="LEFT"/>UQ account_reference_token<BR ALIGN="LEFT"/>account_last4<BR ALIGN="LEFT"/>account_status</TD></TR></TABLE>>];
+  vendor_bank_accounts [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>vendor_bank_accounts</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK vendor_bank_account_id<BR ALIGN="LEFT"/>FK vendor_id<BR ALIGN="LEFT"/>FK bank_account_id<BR ALIGN="LEFT"/>effective_from / effective_to<BR ALIGN="LEFT"/>authorization_status<BR ALIGN="LEFT"/>changed_by / authorized_by</TD></TR></TABLE>>];
+  bank_account_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>bank_account_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK bank_account_history_id<BR ALIGN="LEFT"/>FK vendor_id<BR ALIGN="LEFT"/>FK old_bank_account_id<BR ALIGN="LEFT"/>FK new_bank_account_id<BR ALIGN="LEFT"/>changed_at<BR ALIGN="LEFT"/>authorized_by_employee_id</TD></TR></TABLE>>];
+  payment_terms_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>payment_terms_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK payment_terms_history_id<BR ALIGN="LEFT"/>FK vendor_id<BR ALIGN="LEFT"/>previous / new terms<BR ALIGN="LEFT"/>changed_at<BR ALIGN="LEFT"/>changed_by / authorized_by<BR ALIGN="LEFT"/>authorization_status</TD></TR></TABLE>>];
+  invoices [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#3B2A20"><FONT COLOR="white"><B>invoices</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK invoice_id<BR ALIGN="LEFT"/>FK vendor_id<BR ALIGN="LEFT"/>vendor_invoice_number<BR ALIGN="LEFT"/>vendor_name_snapshot<BR ALIGN="LEFT"/>invoice_amount / currency<BR ALIGN="LEFT"/>invoice_date / submission_timestamp<BR ALIGN="LEFT"/>FK purchase_order_id<BR ALIGN="LEFT"/>FK category_id / bank_account_id<BR ALIGN="LEFT"/>payment_terms_snapshot<BR ALIGN="LEFT"/>FK submitted_by_employee_id<BR ALIGN="LEFT"/>status</TD></TR></TABLE>>];
+  invoice_submission_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>invoice_submission_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK submission_history_id<BR ALIGN="LEFT"/>FK invoice_id<BR ALIGN="LEFT"/>submission_number<BR ALIGN="LEFT"/>submitted_at<BR ALIGN="LEFT"/>FK submitted_by_employee_id<BR ALIGN="LEFT"/>submission_status / rejection_reason</TD></TR></TABLE>>];
+  invoice_status_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>invoice_status_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK invoice_status_history_id<BR ALIGN="LEFT"/>FK invoice_id<BR ALIGN="LEFT"/>previous_status / new_status<BR ALIGN="LEFT"/>FK changed_by_employee_id<BR ALIGN="LEFT"/>changed_at / reason</TD></TR></TABLE>>];
+  invoice_approval_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>invoice_approval_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK approval_history_id<BR ALIGN="LEFT"/>FK invoice_id<BR ALIGN="LEFT"/>FK approver_id<BR ALIGN="LEFT"/>approval_status<BR ALIGN="LEFT"/>approved_at / comments</TD></TR></TABLE>>];
+  purchase_orders [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#3B2A20"><FONT COLOR="white"><B>purchase_orders</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK purchase_order_id<BR ALIGN="LEFT"/>FK vendor_id<BR ALIGN="LEFT"/>po_number<BR ALIGN="LEFT"/>authorized_amount / currency<BR ALIGN="LEFT"/>creation_date<BR ALIGN="LEFT"/>status / expiration_date</TD></TR></TABLE>>];
+  purchase_order_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>purchase_order_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK purchase_order_history_id<BR ALIGN="LEFT"/>FK purchase_order_id<BR ALIGN="LEFT"/>previous / new authorized amount<BR ALIGN="LEFT"/>changed_at<BR ALIGN="LEFT"/>FK changed_by_employee_id<BR ALIGN="LEFT"/>change_reason</TD></TR></TABLE>>];
+  employees [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#3B2A20"><FONT COLOR="white"><B>employees</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK employee_id<BR ALIGN="LEFT"/>employee_name<BR ALIGN="LEFT"/>role / department<BR ALIGN="LEFT"/>employee_status<BR ALIGN="LEFT"/>approval_limit / currency</TD></TR></TABLE>>];
+  employee_authorization_history [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#A65A34"><FONT COLOR="white"><B>employee_authorization_history</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK authorization_history_id<BR ALIGN="LEFT"/>FK employee_id<BR ALIGN="LEFT"/>authorization_role<BR ALIGN="LEFT"/>approval_limit / currency<BR ALIGN="LEFT"/>effective_from / effective_to<BR ALIGN="LEFT"/>FK changed_by_employee_id<BR ALIGN="LEFT"/>authorization_status</TD></TR></TABLE>>];
+  expense_categories [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#3B2A20"><FONT COLOR="white"><B>expense_categories</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK category_id<BR ALIGN="LEFT"/>UQ category_name<BR ALIGN="LEFT"/>monthly_budget<BR ALIGN="LEFT"/>budget_currency</TD></TR></TABLE>>];
+  invoice_risk_assessments [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#8A9A5B"><FONT COLOR="white"><B>invoice_risk_assessments</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK risk_assessment_id<BR ALIGN="LEFT"/>FK invoice_id<BR ALIGN="LEFT"/>risk_score / risk_level<BR ALIGN="LEFT"/>model_version / ruleset_version<BR ALIGN="LEFT"/>assessment_status<BR ALIGN="LEFT"/>explanation / assessed_at</TD></TR></TABLE>>];
+  invoice_detection_results [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#8A9A5B"><FONT COLOR="white"><B>invoice_detection_results</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK detection_result_id<BR ALIGN="LEFT"/>FK risk_assessment_id<BR ALIGN="LEFT"/>detection_type / source<BR ALIGN="LEFT"/>severity / finding_score<BR ALIGN="LEFT"/>evidence JSONB<BR ALIGN="LEFT"/>created_at</TD></TR></TABLE>>];
+  invoice_review_decisions [label=< <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="5"><TR><TD BGCOLOR="#8A9A5B"><FONT COLOR="white"><B>invoice_review_decisions</B></FONT></TD></TR><TR><TD ALIGN="LEFT">PK review_decision_id<BR ALIGN="LEFT"/>FK invoice_id<BR ALIGN="LEFT"/>FK risk_assessment_id<BR ALIGN="LEFT"/>FK reviewer_employee_id<BR ALIGN="LEFT"/>decision / decision_reason<BR ALIGN="LEFT"/>decided_at / follow_up_status</TD></TR></TABLE>>];
+
+  vendors -> invoices [label="1 : many"];
+  vendors -> vendor_name_history [label="1 : many"];
+  vendors -> vendor_bank_accounts [label="1 : many"];
+  bank_accounts -> vendor_bank_accounts [label="1 : many"];
+  vendors -> bank_account_history [label="1 : many"];
+  vendors -> payment_terms_history [label="1 : many"];
+  vendors -> purchase_orders [label="1 : many"];
+  purchase_orders -> purchase_order_history [label="1 : many"];
+  purchase_orders -> invoices [label="0..1 : many"];
+  expense_categories -> invoices [label="1 : many"];
+  employees -> invoices [label="submitter"];
+  employees -> invoice_submission_history [label="submits"];
+  employees -> invoice_status_history [label="changes"];
+  employees -> invoice_approval_history [label="approves"];
+  employees -> employee_authorization_history [label="1 : many"];
+  invoices -> invoice_submission_history [label="1 : many"];
+  invoices -> invoice_status_history [label="1 : many"];
+  invoices -> invoice_approval_history [label="1 : many"];
+  invoices -> invoice_risk_assessments [label="1 : many"];
+  invoice_risk_assessments -> invoice_detection_results [label="1 : many"];
+  invoices -> invoice_review_decisions [label="1 : many"];
+  employees -> invoice_review_decisions [label="reviewer"];
+}

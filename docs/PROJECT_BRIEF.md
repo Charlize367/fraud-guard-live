@@ -1,159 +1,192 @@
-# TerraScope — Project Brief
+# Fraud Guard Live — Project Brief
 
-**Project type:** Machine Learning / Geospatial Intelligence Platform  
+**Project type:** Full-Stack Software Engineering / Applied Machine Learning  
 **Status:** In Development  
-**Initial focus:** Forest-Change Intelligence
+**Initial focus:** Supplier Invoice Fraud Detection and Risk Intelligence
 
 ## 1. Project Overview
 
-TerraScope is an AI-powered Earth intelligence platform designed to analyze environmental and satellite-derived data, identify meaningful changes across geographic regions, and help users investigate potentially concerning environmental patterns.
+Fraud Guard Live is an intelligent invoice risk detection and investigation platform designed to help organizations identify suspicious supplier invoices before payment.
 
-The platform aims to turn large amounts of geospatial data into understandable, actionable intelligence through machine learning, data analysis, and interactive visualization.
+The platform combines rule-based fraud detection, machine learning, historical transaction analysis, and a human review workflow to identify unusual invoice activity and prioritize potentially fraudulent transactions.
 
-Its first application will focus on forest-change intelligence.
+Rather than automatically declaring invoices fraudulent, the system provides risk scores, supporting evidence, and explanations that help finance teams make informed decisions.
 
 ## 2. The Problem
 
-Environmental changes occur across large geographic areas and over long periods of time. Identifying where significant changes are happening, understanding their patterns, and deciding which areas deserve further investigation can be difficult.
+Organizations process large volumes of supplier invoices. Among legitimate transactions, suspicious activity can include duplicate invoices, unusual payment amounts, altered supplier bank details, invoice splitting, and abnormal purchasing patterns.
 
-Researchers and environmental organizations need better ways to explore historical changes, identify unusual patterns, and prioritize areas for investigation.
+Traditional manual review can be time-consuming and may fail to identify subtle patterns across vendors and transactions.
 
-TerraScope aims to help address this problem by combining satellite-derived datasets, machine learning, and geospatial analysis.
+Fraud Guard Live aims to help organizations detect suspicious activity earlier, prioritize investigations, and make invoice review more efficient.
 
 ## 3. Target Users
 
-- Environmental researchers
-- Conservation organizations
-- Forestry monitoring teams
-- Sustainability and environmental risk analysts
-- Students and institutions conducting environmental research
+- Accounts Payable (AP) employees
+- Finance teams
+- Fraud investigators
+- Procurement and internal audit teams
+- Finance managers and authorized approvers
 
 ## 4. Project Objectives
 
-TerraScope's initial objectives are to:
+1. Accept and validate supplier invoice submissions.
+2. Maintain historical records of vendors and transactions.
+3. Detect known suspicious patterns through configurable business rules.
+4. Identify unusual transaction behavior using machine learning.
+5. Generate invoice risk scores with supporting evidence.
+6. Prioritize suspicious invoices for human investigation.
+7. Provide reviewers with invoice history and investigation tools.
+8. Record reviewer decisions for model evaluation and future improvement.
 
-1. Analyze historical forest-cover and tree-cover-loss data.
-2. Identify geographic areas experiencing significant changes.
-3. Discover patterns and similarities between affected regions.
-4. Detect unusual environmental changes that may require investigation.
-5. Estimate forest-change risk using appropriately constructed predictive models.
-6. Visualize findings through an interactive geographic interface.
-7. Help users prioritize areas for further investigation.
-
-## 5. Initial Scope: Forest-Change Intelligence
-
-The first release will focus on a clearly defined forest-monitoring problem.
+## 5. Initial Scope: Invoice Fraud Detection
 
 ### Core capabilities
 
-- Geographic exploration of forest-change data.
-- Historical forest-change visualization.
-- Machine-learning-based pattern identification.
-- Geographic clustering and anomaly detection.
-- Risk estimation for a defined prediction target.
-- Area-level summaries and analytical reports.
-- Interactive map-based investigation.
+- Invoice submission and validation.
+- Vendor and transaction history management.
+- Duplicate invoice detection.
+- Suspicious transaction rule engine.
+- ML-based anomaly detection.
+- Invoice risk scoring and risk categorization.
+- Review queue and investigation dashboard.
+- Evidence and explanation display.
+- Human review decisions and audit history.
+- Model evaluation and performance reporting.
+
+### Initial suspicious patterns
+
+- Duplicate invoices.
+- Unusually large invoices relative to vendor history.
+- Multiple invoices just below approval thresholds.
+- Unusual vendor, approver, or cost-code combinations.
+- Suspicious bank-detail changes followed by large transactions.
+
+These patterns will be implemented only when the required data is available or appropriately simulated.
 
 ### Long-term possibilities
 
-- Wildfire monitoring.
-- Flood and environmental hazard intelligence.
-- Broader land-use and land-cover change analysis.
-- Additional satellite imagery analysis.
-- Multi-domain Earth observation intelligence.
+- Accounting platform integrations.
+- More advanced vendor relationship analysis.
+- Graph-based fraud detection.
+- Continuous model monitoring.
+- Automated investigation prioritization.
+- Additional financial risk intelligence capabilities.
 
-These are future extensions, not requirements for the first release.
+These are future extensions, not first-release requirements.
 
 ## 6. Machine Learning Scope
 
-The project will apply concepts from the user's machine learning studies where they serve a meaningful purpose.
+The project will apply machine learning techniques where they meaningfully support the fraud detection problem.
 
 | Technique | Intended application |
 |---|---|
-| Linear regression | Historical trend analysis and forecasting baseline |
-| Logistic regression | Binary forest-change risk classification |
-| Neural networks | Learning nonlinear relationships in environmental features |
-| K-means | Grouping geographic areas by change characteristics |
-| Anomaly detection | Identifying unusual patterns of forest change |
-| PCA | Feature reduction and exploratory analysis |
-| Collaborative filtering | Optional personalized discovery and recommendations |
-| Q-learning | Experimental investigation-prioritization simulation |
-| Adam | Neural-network optimization |
-
-Models will be implemented, compared, and evaluated against appropriate baselines.
+| Linear regression | Estimate expected invoice amounts and establish trend baselines |
+| Logistic regression | Supervised baseline for invoice risk classification |
+| K-means | Discover groups of vendors or transactions with similar behavior |
+| Anomaly detection | Identify transactions that differ from normal patterns |
+| PCA | Explore and reduce high-dimensional transaction features |
+| Neural networks | Compare nonlinear classification against simpler models |
+| Collaborative filtering | Experiment with identifying unusual patterns in vendor, employee, and approver interactions |
+| Content-based filtering | Compare invoices based on their characteristics and similarity to historical transactions |
 
 Not every algorithm is required in the first release. Techniques will only be included when the data and problem formulation support them.
 
+Rules-based detection will serve as an important baseline alongside ML models.
+
+Collaborative filtering and content-based filtering are exploratory techniques. Their suitability will be evaluated before considering implementation.
+
 ## 7. Data Sources
 
-Initial candidate datasets:
+Initial data strategy:
 
-- **Hansen Global Forest Change:** Historical global tree-cover and loss information.
-- **WRI Global Drivers of Forest Loss:** Information about dominant drivers of tree-cover loss.
-- **Copernicus Sentinel-2:** Multispectral satellite imagery for additional image-analysis experiments.
+- Public government procurement and spending datasets, such as USAspending.
+- Public financial transaction datasets where suitable.
+- Synthetic invoice records for fields not available in public datasets.
+- Controlled synthetic fraud scenarios for testing and evaluation.
 
-Dataset coverage, licensing, resolution, availability, and compatibility will be verified before integration.
+Important limitation: public spending records generally do not expose private supplier bank details, internal approval histories, or confirmed fraud labels.
+
+Synthetic fields and injected fraud scenarios must be clearly documented. Simulated fraud detection must not be presented as proof of real-world fraud detection.
 
 ## 8. Technical Architecture
 
 | Component | Technology |
 |---|---|
-| ML development | Python |
+| Frontend | React |
+| Main backend | Java + Spring Boot |
+| ML service | Python |
 | Data processing | NumPy, Pandas |
 | ML frameworks | Scikit-learn, TensorFlow |
-| Geospatial processing | GeoPandas, Rasterio |
-| Backend API | FastAPI |
-| Database | PostgreSQL + PostGIS |
-| Frontend | React + Vite |
-| Mapping | MapLibre GL |
-| Visualization | Plotly |
-| Deployment | Docker |
+| Database | PostgreSQL |
+| API communication | REST |
+| Service deployment | Docker |
+
+### System workflow
+
+1. An employee submits an invoice or an external system sends one through an API.
+2. Spring Boot validates and stores the invoice.
+3. The rules engine checks for known suspicious patterns.
+4. The Python ML service analyzes transaction behavior.
+5. The decision engine combines available evidence and ML results.
+6. The system assigns a risk score and category.
+7. React displays the invoice and its supporting evidence.
+8. Authorized reviewers investigate and record their decisions.
+9. Decisions are retained for auditing and future model evaluation.
 
 ## 9. Evaluation and Success Criteria
 
-TerraScope will be evaluated using:
+The system will be evaluated using:
 
-- Model performance against simple baselines.
-- Precision, recall, F1-score, and appropriate regression metrics.
-- Geographic and temporal generalization.
-- False-positive and false-negative analysis.
-- Quality and interpretability of detected patterns.
-- Usability of the interactive platform.
-- Reproducibility of data processing and model experiments.
+- Precision, recall, and F1-score.
+- False-positive and false-negative rates.
+- Detection performance against simple rule-based baselines.
+- Performance on unseen transactions and vendors.
+- Risk-score quality and interpretability.
+- Processing latency.
+- Percentage of invoices flagged for review.
+- Ability to detect controlled synthetic fraud scenarios.
 
-The system must distinguish detected tree-cover changes from confirmed deforestation causes. Predictions and risk estimates must communicate their uncertainty and limitations.
+The evaluation must avoid data leakage and clearly distinguish synthetic test results from real-world performance.
 
 ## 10. First Release Boundaries
 
 The first release will prioritize:
 
-- One manageable geographic study area.
-- A verified and reproducible data pipeline.
-- One clearly defined ML prediction or detection task.
-- Several meaningful model comparisons.
-- An interactive map and analytical dashboard.
-- A working backend and ML integration.
-- Documented experiments and limitations.
+- One coherent invoice-processing workflow.
+- A reproducible transaction dataset and preprocessing pipeline.
+- A functioning rule-based detection layer.
+- At least one meaningful ML detection model.
+- Risk scoring and evidence generation.
+- A working Spring Boot backend.
+- A Python ML service integrated with the backend.
+- A React investigation dashboard.
+- PostgreSQL persistence.
+- Model evaluation and documented limitations.
 
-Global expansion, live operational alerts, and multiple environmental monitoring modules are outside the initial release.
+Real accounting-system integrations, advanced neural networks, and autonomous payment decisions are outside the initial release.
 
 ## 11. Development Philosophy
 
-TerraScope is intended to demonstrate genuine machine learning and software engineering ability.
+Fraud Guard Live is intended to demonstrate genuine software engineering and applied machine learning ability.
 
 Development principles:
 
-- Understand the data before selecting algorithms.
-- Build and understand the models rather than blindly relying on prebuilt predictions.
-- Establish baselines before using complex models.
+- Understand the business problem before selecting algorithms.
+- Understand the data before training models.
+- Establish baselines before introducing complex models.
+- Build and understand the models rather than blindly relying on generated predictions.
 - Avoid data leakage.
 - Evaluate models on unseen data.
 - Keep ML experiments reproducible.
+- Design maintainable APIs and clear service boundaries.
 - Use AI-assisted development as a tool, not a substitute for technical understanding.
 - Prioritize a complete, reliable system over an excessive number of features.
 
+Human reviewers retain authority over invoice decisions. The system must not independently release payments or declare a transaction fraudulent without investigation.
+
 ## 12. Long-Term Vision
 
-TerraScope aims to evolve into a modular Earth intelligence platform that helps people explore, understand, and investigate environmental changes through machine learning and geospatial technology.
+Fraud Guard Live aims to become an intelligent financial risk platform that helps organizations identify suspicious transactions, investigate financial irregularities, and strengthen their invoice review processes.
 
-**See change. Understand impact. Prioritize action.**
+**Detect anomalies. Explain risk. Protect payments.**
