@@ -65,30 +65,32 @@ REQUIRED_COLUMNS = {
         "budget_currency",
     ],
     "bank_accounts": [
-        "bank_account_id",
-        "company_id",
-        "account_status",
-    ],
-    "vendor_bank_accounts": [
-        "vendor_bank_account_id",
-        "company_id",
-        "vendor_id",
-        "bank_account_id",
-        "auth_status",
-        "effective_to",
-    ],
-    "bank_account_history": [
-        "bank_account_history_id",
-        "bank_account_id",
-        "company_id",
-        "auth_status",
-        "authorized_by_employee_id",
-    ],
+    "bank_account_id",
+    "account_status",
+],
+
+"vendor_bank_accounts": [
+    "vendor_bank_account_id",
+    "company_id",
+    "vendor_id",
+    "bank_account_id",
+    "authorization_status",
+    "effective_to",
+],
+
+"bank_account_history": [
+    "bank_account_history_id",
+    "old_bank_account_id",
+    "new_bank_account_id",
+    "company_id",
+    "authorization_status",
+    "authorized_by_employee_id",
+],
     "payment_terms_history": [
         "payment_terms_history_id",
         "company_id",
         "vendor_id",
-        "auth_status",
+        "authorization_status",
         "authorized_by_employee_id",
     ],
     "purchase_orders": [
@@ -124,7 +126,6 @@ REQUIRED_COLUMNS = {
         "category_id",
         "cost_code",
         "payment_terms_snapshot",
-        "bank_account_id",
         "bank_account_reference_snapshot",
         "submitted_by_employee_id",
         "status",
@@ -142,7 +143,7 @@ REQUIRED_COLUMNS = {
         "rejection_reason",
     ],
     "invoice_status_history": [
-        "status_history_id",
+        "invoice_status_history_id",
         "company_id",
         "invoice_id",
         "previous_status",
@@ -249,22 +250,21 @@ REQUIRED_FIELDS = {
     ],
 
     "bank_accounts": [
-        "bank_account_id",
-        "bank_name",
-        "account_reference_token",
-        "account_last4",
-        "account_status",
-    ],
-
-    "vendor_bank_accounts": [
-        "vendor_bank_account_id",
-        "company_id",
-        "vendor_id",
-        "bank_account_id",
-        "effective_from",
-        "authorization_status",
-        "change_reason",
-    ],
+    "bank_account_id",
+    "bank_name",
+    "account_reference_token",
+    "account_last4",
+    "account_status",
+],
+"vendor_bank_accounts": [
+    "vendor_bank_account_id",
+    "company_id",
+    "vendor_id",
+    "bank_account_id",
+    "effective_from",
+    "authorization_status",
+    "change_reason",
+],
 
     "bank_account_history": [
         "bank_account_history_id",
@@ -324,7 +324,6 @@ REQUIRED_FIELDS = {
         "submission_timestamp",
         "purchase_order_id",
         "category_id",
-        "bank_account_id",
         "submitted_by_employee_id",
         "status",
     ],
@@ -460,39 +459,32 @@ EXPECTED_DATA_TYPES = {
     },
 
     "bank_accounts": {
-        "bank_account_id": "integer",
-        "bank_name": "string",
-        "account_reference_token": "string",
-        "account_last4": "string",
-        "account_status": "string",
-        "created_at": "datetime",
-    },
+    "bank_account_id": "integer",
+    "bank_name": "string",
+    "account_reference_token": "string",
+    "account_last4": "string",
+    "account_status": "string",
+},
 
-    "vendor_bank_accounts": {
-        "vendor_bank_account_id": "integer",
-        "company_id": "integer",
-        "vendor_id": "integer",
-        "bank_account_id": "integer",
-        "effective_from": "datetime",
-        "effective_to": "datetime",
-        "authorization_status": "string",
-        "changed_by_employee_id": "integer",
-        "authorized_by_employee_id": "integer",
-        "change_reason": "string",
-    },
+"vendor_bank_accounts": {
+    "vendor_bank_account_id": "integer",
+    "company_id": "integer",
+    "vendor_id": "integer",
+    "bank_account_id": "integer",
+    "effective_from": "datetime",
+    "effective_to": "datetime",
+    "authorization_status": "string",
+},
 
-    "bank_account_history": {
-        "bank_account_history_id": "integer",
-        "company_id": "integer",
-        "vendor_id": "integer",
-        "old_bank_account_id": "integer",
-        "new_bank_account_id": "integer",
-        "changed_at": "datetime",
-        "changed_by_employee_id": "integer",
-        "authorized_by_employee_id": "integer",
-        "authorization_status": "string",
-        "change_reason": "string",
-    },
+"vendor_bank_accounts": {
+    "vendor_bank_account_id": "integer",
+    "company_id": "integer",
+    "vendor_id": "integer",
+    "bank_account_id": "integer",
+    "effective_from": "datetime",
+    "effective_to": "datetime",
+    "authorization_status": "string",
+},
 
     "payment_terms_history": {
         "payment_terms_history_id": "integer",
@@ -544,7 +536,6 @@ EXPECTED_DATA_TYPES = {
         "category_id": "integer",
         "cost_code": "string",
         "payment_terms_snapshot": "string",
-        "bank_account_id": "integer",
         "bank_account_reference_snapshot": "string",
         "submitted_by_employee_id": "integer",
         "status": "string",
@@ -605,7 +596,6 @@ EXPECTED_DATA_TYPES = {
         "detection_source": "string",
         "severity": "string",
         "finding_score": "numeric",
-        "evidence": "json",
         "created_at": "datetime",
     },
 
@@ -676,6 +666,29 @@ VALID_STATUSES = {
     ],
 }
 
+def matches_expected_type(series, expected_type):
+
+    if expected_type == "integer":
+        return pd.api.types.is_integer_dtype(series)
+
+    elif expected_type == "numeric":
+        return pd.api.types.is_numeric_dtype(series)
+
+    elif expected_type == "string":
+        non_null_values = series.dropna()
+
+        return non_null_values.map(
+            lambda value: isinstance(value, str)
+        ).all()
+
+    elif expected_type == "datetime":
+        return pd.api.types.is_datetime64_any_dtype(series)
+
+    elif expected_type == "json":
+        return pd.api.types.is_object_dtype(series)
+
+    return False
+
 def validate_data(table_name, df, all_tables):
 
     # 0. Handle invalid values
@@ -731,6 +744,8 @@ def validate_data(table_name, df, all_tables):
     required_fields = REQUIRED_FIELDS.get(table_name, [])
     
     for col in required_fields:
+        if col not in df.columns:
+            continue
         if df[col].isnull().any():
             missing_records = df[df[col].isnull()]
             print(f"Missing fields in: {col}")
@@ -743,16 +758,21 @@ def validate_data(table_name, df, all_tables):
 
     # 3. Check expected data types
 
-    expected_data_types = EXPECTED_DATA_TYPES.get(table_name, [])
-        
+    expected_data_types = EXPECTED_DATA_TYPES.get(table_name, {})
+
     for col, expected_type in expected_data_types.items():
-        if df[col].dtype != expected_type:
-            print(f"Incorrect data type in in: {col}")
+
+        if col not in df.columns:
+            continue
+
+        if not matches_expected_type(df[col], expected_type):
+            print(f"Incorrect data type in: {col}")
+
             validation_issues.append({
-                    "table": table_name,
-                    "column": col,
-                    "issue": "Unexpected data type",
-    })
+                "table": table_name,
+                "column": col,
+                "issue": "Unexpected data type",
+            })
 
     # 4. Check primary identifiers
 
@@ -859,4 +879,4 @@ def validate_data(table_name, df, all_tables):
 
     # 7. Return validation result
 
-    return df
+    return validation_issues

@@ -1,5 +1,6 @@
 
 import pandas as pd
+from ml.src.data.data_inspection import _stringify_unhashable_values
 
 
 # Columns that need date conversion
@@ -30,13 +31,13 @@ INTEGER_COLUMNS = {
 
 # Columns to inspect for categorical consistency
 CATEGORICAL_COLUMNS = {
-    "employee_authorization_history": ["auth_role", "auth_status"],
+    "employee_authorization_history": ["authorization_role", "authorization_status"],
     "vendors": ["vendor_status"],
     "employees": ["role", "department", "employee_status"],
-    "vendor_bank_accounts": ["auth_status"],
+    "vendor_bank_accounts": ["authorization_status"],
     "bank_accounts": ["account_status"],
-    "bank_account_history": ["auth_status"],
-    "payment_terms_history": ["auth_status"],
+    "bank_account_history": ["authorization_status"],
+    "payment_terms_history": ["authorization_status"],
     "purchase_orders": ["status"],
     "invoice_status_history": ["previous_status", "new_status"],
     "invoices": ["status"],
@@ -56,13 +57,17 @@ CURRENCY_COLUMNS = {
 }
 
 
-def clean_data(table_name, df, all_tables):
+def clean_data(table_name, df):
+
+
 
     # Get original DataFrame dimensions
     rows, cols = df.shape
 
     # 1. Create a copy of the original DataFrame
     df_clean = df.copy()
+
+    df_check = _stringify_unhashable_values(df_clean.copy())
 
     # 2. Handle missing values
     df_missing = df_clean.isnull().sum()
@@ -72,7 +77,7 @@ def clean_data(table_name, df, all_tables):
     print(df_missing)
 
     # 3. Handle duplicate records
-    df_duplicated = df_clean.duplicated().sum()
+    df_duplicated = df_check.duplicated().sum()
 
     print(f"\nExact duplicate records in {table_name}:")
     print(df_duplicated)
@@ -80,8 +85,8 @@ def clean_data(table_name, df, all_tables):
     if df_duplicated > 0:
         print("Exact duplicate rows found. Needs investigation.")
 
-    df_duplicated_rows = df_clean[
-        df_clean.duplicated(keep=False)
+    df_duplicated_rows = df_check[
+        df_check.duplicated(keep=False)
     ]
 
     print(f"\nDuplicate rows in {table_name}:")
@@ -89,9 +94,13 @@ def clean_data(table_name, df, all_tables):
 
     # Check repeated business identifiers in invoices
     if table_name == "invoices":
-        duplicates = df_clean[
-            df_clean.duplicated(
-                subset=["vendor_invoice_number"],
+        duplicates = df_check[
+            df_check.duplicated(
+                subset=[
+                    "company_id",
+                    "vendor_id",
+                    "vendor_invoice_number",
+                ],
                 keep=False,
             )
         ]
@@ -149,5 +158,5 @@ def clean_data(table_name, df, all_tables):
             print(f"\nCurrency values in {table_name}.{column}:")
             print(df_clean[column].unique())
 
-    
+    return df_clean
    

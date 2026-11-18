@@ -1,8 +1,11 @@
 
 from ml.src.data.clean import clean_data
 from ml.src.data.extract import extract_tables
-from ml.src.data.inspect import inspect_data
+from ml.src.data.data_inspection import inspect_data
 from ml.src.data.validate import validate_data
+
+from ml.src.data.feature_engineering import create_invoice_features
+
 
 
 def transform_tables():
@@ -48,3 +51,10 @@ def transform_tables():
 if __name__ == "__main__":
     results = transform_tables()
     print("\nTransformation completed.")
+
+    processed_invoices = create_invoice_features(results["cleaned_tables"])
+
+    print("Shape:", processed_invoices.shape)
+    print("Unique submissions:", processed_invoices["submission_history_id"].nunique())
+    print("Total rows:", len(processed_invoices))
+   
